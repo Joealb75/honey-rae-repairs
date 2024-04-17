@@ -7,6 +7,8 @@ import { CustomerList } from "./components/customers/CustomerList.jsx";
 import { TicketList } from "./components/tickets/TicketList.jsx";
 import { EmployeesList } from "./components/employees/employees.jsx";
 import { NavBar } from "./components/nav/navBar.jsx";
+import { Welcome } from "./components/welcome/welcome.jsx";
+import { CustomerDetails } from "./components/customers/CustomerDetails.jsx";
 
 export const App = () => {
   return (
@@ -20,12 +22,21 @@ export const App = () => {
                              if <Outlet /> was above <NavBar /> then the NavBar would render at the bottom of all pages      */}
             </>           
           }
-        >
-          <Route path="/tickets" element={<TicketList />}></Route>
-          <Route path="/customers" element={<CustomerList />}></Route>
-          <Route path="/employees" element={<EmployeesList />}></Route>
+        >   
+          <Route index element={<Welcome />}/>
+          {/* index is the default for the parent URL in this case "/" so whenever we are at "/" <Welcome /> will render in  */}
+          <Route path="tickets" element={<TicketList />}/>
+          <Route path="employees" element={<EmployeesList />}/>
+          <Route path="customers" >
+            <Route index element={<CustomerList />} />
+            <Route path=":customerId" element={<CustomerDetails />}/>
+            {/* ":" is a route parameter used to capture the id and store it  */}
+            </Route>
         </Route>
       </Routes>
     </>
   );
 };
+
+// ! Workshop Notes 
+// define a single responsibility for each component, once a component has more then one responsibility its time to break it up
