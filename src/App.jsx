@@ -5,10 +5,11 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import "./App.css"; // gets css styles
 import { CustomerList } from "./components/customers/CustomerList.jsx";
 import { TicketList } from "./components/tickets/TicketList.jsx";
-import { EmployeesList } from "./components/employees/employees.jsx";
+import { EmployeesList } from "./components/employees/employeesList.jsx";
 import { NavBar } from "./components/nav/navBar.jsx";
 import { Welcome } from "./components/welcome/welcome.jsx";
 import { CustomerDetails } from "./components/customers/CustomerDetails.jsx";
+import { EmployeeDetails } from "./components/employees/employeeDetails.jsx";
 
 export const App = () => {
   return (
@@ -26,12 +27,15 @@ export const App = () => {
           <Route index element={<Welcome />}/>
           {/* index is the default for the parent URL in this case "/" so whenever we are at "/" <Welcome /> will render in  */}
           <Route path="tickets" element={<TicketList />}/>
-          <Route path="employees" element={<EmployeesList />}/>
+          <Route path="employees" >
+            <Route index element={<EmployeesList />} />
+            <Route path=":employeeId" element={<EmployeeDetails />}/>
+          </Route>
           <Route path="customers" >
             <Route index element={<CustomerList />} />
             <Route path=":customerId" element={<CustomerDetails />}/>
-            {/* ":" is a route parameter used to capture the id and store it  */}
-            </Route>
+            {/* ":" is a route parameter used to capture the id and store it in customerId */}
+          </Route>
         </Route>
       </Routes>
     </>
