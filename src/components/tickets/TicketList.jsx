@@ -4,7 +4,8 @@ import "./Tickets.css";
 import { Ticket } from "./Ticket.jsx";
 import { TicketFilterBar } from "./TicketFilterBar.jsx";
 
-export const TicketList = () => {
+// {currentUser} prop passed in from ApplicationViews.jsx
+export const TicketList = ({currentUser}) => {
   const [allTickets, setAllTickets] = useState([]); // [stateVariable, setterFunction]
   const [showEmergencyOnly, setShowEmergencyOnly] = useState(false);
   const [filteredTickets, setFilteredTickets] = useState([]);
@@ -43,7 +44,7 @@ export const TicketList = () => {
 
       <article className="tickets">
         {filteredTickets.map((ticketObj) => {
-          return <Ticket ticket={ticketObj} key={ticketObj.id} />;
+          return <Ticket ticket={ticketObj} currentUser={currentUser} key={ticketObj.id} />;
         })}
       </article>
     </div>

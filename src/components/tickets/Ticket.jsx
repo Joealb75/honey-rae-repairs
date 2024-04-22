@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllEmployees } from "../../services/employeeService.js";
-
-export const Ticket = ({ticket}) => { // here the {} are de-structuring the ticket object
+// getting {currentUser} from TicketList.jsx -> ApplicationViews.jsx
+export const Ticket = ({ ticket, currentUser }) => { // here the {} are de-structuring the ticket object
 
     const [employees, setEmployees] = useState([]) // get employees and populate the state with the ones from the database 
     const [assignedEmployee, setAssignedEmployee] = useState({})
@@ -36,6 +36,15 @@ export const Ticket = ({ticket}) => { // here the {} are de-structuring the tick
       <div>
         <div className="ticket-info">Emergency</div>
         <div>{ticket.emergency ? "yes" : "no"}</div>
+      </div>
+      <div className="btn-container">
+        {/* 
+        IF the logged in user is an employee and theres no employee ticket associated with the service ticket, 
+        then a btn to claim the ticket should display */}
+        {currentUser.isStaff && !assignedEmployee ? <button className="btn btn-secondary">Claim</button> : ""}
+        {/* IF the logged in user is the assigned employee for the ticket and there is no dateCompleted, 
+        the button to close the tickt should display */}
+        
       </div>
     </footer>
   </section>
