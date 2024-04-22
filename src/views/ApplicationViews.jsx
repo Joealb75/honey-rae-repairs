@@ -12,12 +12,12 @@ export const ApplicationViews = () => {
 
   // need to get current user(prop) down to "TicketList" when passing state down multiple levels this is called prop drilling 
   // then it gets passed into TicketList.jsx as a parameter-prop TicketList({currentUser})
-  const [currentUser, setCurrrentuser] = useState({})
+  const [currentUser, setCurrrentUser] = useState({})
 
   useEffect(()=> {
     const localHoneyUser = localStorage.getItem("honey_user")
     const honeyUserObject = JSON.parse(localHoneyUser)
-    setCurrrentuser(honeyUserObject)
+    setCurrrentUser(honeyUserObject)
   },[])
 
   return (
