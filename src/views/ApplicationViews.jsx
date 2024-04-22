@@ -7,6 +7,7 @@ import { Welcome } from "/src/components/welcome/welcome.jsx";
 import { CustomerDetails } from "/src/components/customers/CustomerDetails.jsx";
 import { EmployeeDetails } from "/src/components/employees/employeeDetails.jsx";
 import { useEffect, useState } from "react";
+import { EmployeeForm } from "../components/forms/employeeForm.jsx";
 
 export const ApplicationViews = () => {
 
@@ -46,6 +47,7 @@ export const ApplicationViews = () => {
             <Route path=":customerId" element={<CustomerDetails />} />
             {/* ":" is a route parameter used to capture the id and store it in customerId */}
           </Route>
+          <Route path="/profile" element={<EmployeeForm currentUser={currentUser}/> }/>
         </Route>
       </Routes>
     </>
